@@ -1,0 +1,2 @@
+Bot_Token='MTEzMjYwNDk1MzE2MTEyMTc5Mw.GtP-Jh.p_GpDZjGxtxxUBY-4dQSXvuOE4LN4E8RVjDHPI'
+Motivation_API_key="ff86fa1c15mshca94cc32a7e3b52p178eacjsn5790e8ec2796"
