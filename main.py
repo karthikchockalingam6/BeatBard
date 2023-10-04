@@ -143,5 +143,14 @@ async def ban_error(ctx,error):
     if isinstance(error,commands.MissingPermissions):
         await ctx.send("You dont have permission to ban people :(" )
 
+@client.command()
+async def embed(ctx):
+    embed = discord.Embed(title='Test',url='https://google.com',description='Testing Embeds',color=0x4dff4d)
+    embed.set_author(name=ctx.author.display_name,url='https://www.linkedin.com/in/karthik-chockalingam6/')
+    embed.set_thumbnail(url='https://cdn.vectorstock.com/i/preview-1x/48/64/javascript-emblem-black-letters-on-yellow-bg-vector-28264864.jpg')
+    embed.add_field(name="Test123",value="123456789",inline=True)
+    embed.add_field(name="Test2",value="gggggg",inline=True)
+    embed.set_footer(text='End of Testing footer')
+    await ctx.send(embed=embed)
 
 client.run(Bot_Token)
