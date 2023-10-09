@@ -4,6 +4,7 @@ from discord import FFmpegPCMAudio
 from discord import Member
 from discord.ext.commands import has_permissions
 from discord.ext.commands import MissingPermissions
+from discord.utils import get
 import requests
 import json
 import os
@@ -121,11 +122,18 @@ async def queue(ctx,arg):
 @client.event
 async def on_message(message):
     await client.process_commands(message) 
-    lis=["Pen","Paper","Eraser"]
-    for i in lis:
+    list=["Pen","Paper","Eraser"]
+    for i in list:
         if message.content==i:
             await message.delete()
             await message.channel.send("Improper word \"{}\" detected and Deleted.".format(i))
+
+    if message.author == client.user:
+        return
+
+    if ("BeatBard") in message.content:
+        emoji='❤️'
+        await message.add_reaction(emoji)
 
 
 @client.command()
@@ -166,4 +174,37 @@ async def dm(ctx,user:discord.Member,*,message=None):
     embed = discord.Embed(title=message)
     await user.send(embed=embed)
 
+# @client.command(pass_contet = True)
+# @commands.has_permissions(manage_roles = True)
+# async def addRole(ctx,user:discord.Member,*,role:discord.Role):
+
+#     if role in user.roles:
+#         await ctx.send(f"{user.mention}already has the role,{role}")
+#     else:
+#         await user.add_roles(role)
+#         await ctx.send(f"Added {role} to {user.mention}")
+
+# @addRole.error
+# async def role_error(ctx,error):
+#     if isinstance(error,commands.MissingPermissions):
+#         await ctx.send("You dont have permission to use this command :(")
+
+# @client.command(pass_contet = True)
+# @commands.has_permissions(manage_roles = True)
+# async def removeRole(ctx,user:discord.Member,*,role:discord.Role):
+
+#     if role in user.roles:
+#         await user.remove_roles(role)
+#         await ctx.send(f"Removed {role} from {user.mention}")
+    
+#     else:
+       
+#         await ctx.send(f"{user.mention} does not have the role {role}")
+
+# @removeRole.error
+# async def removeRole_error(ctx,error):
+#     if isinstance(error,commands.MissingPermissions):
+#         await ctx.send("You dont have permission to use this command :(")
+
+ 
 client.run(Bot_Token)
